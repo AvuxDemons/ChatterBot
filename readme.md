@@ -1,5 +1,5 @@
 ```
-git clone git@github.com:feignbird/ChatterBot-spacy_fixed.git
+git clone https://github.com/feignbird/ChatterBot-spacy_fixed.git
 pip install ./ChatterBot-spacy_fixed
 pip install chatterbot-corpus
 pip uninstall pyYAML
