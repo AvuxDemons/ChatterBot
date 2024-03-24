@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Train Chatbot</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+
+    <body>
+        <h1>Train Chatbot</h1>
+        <form id="train-form">
+            <label for="train-input">User Input:</label>
+            <textarea id="train-input" rows="5" cols="50"></textarea>
+            <br>
+            <button type="submit">Train</button>
+        </form>
+        <script>
+            const trainForm = document.getElementById('train-form');
+            const trainInput = document.getElementById('train-input');
+
+            trainForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const trainUserInput = trainInput.value.trim();
+                if (trainUserInput) {
+                    const userInputs = trainUserInput.split('\n');
+                    $.ajax({
+                        url: '/train',
+                        method: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ train_data: userInputs }),
+                        success: function (response) {
+                            console.log('Training successful');
+                        },
+                        error: function (error) {
+                            console.log('Training failed');
+                        }
+                    });
+                }
+            });
+        </script>
+
+    </body>
+
+</html>
