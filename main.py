@@ -1,19 +1,22 @@
 from flask import Flask, render_template, request, jsonify
 from lib.bot import CustomChatBot
 
-app = Flask(__name__)
+app = Flask(__name__) # Bikin Web Server
 
-chatbot = CustomChatBot()
-chatbot.train_default()
+chatbot = CustomChatBot() # Bikin Object BOT
+chatbot.train_default() # Training basic
 
+# https://domain.com
 @app.route('/', methods=['GET'])
 def chatbot_chatting():
-    return render_template('chatbot.html')
+    return render_template('chatbot.html') # Render file html
 
+# https://domain.com/training
 @app.route('/training', methods=['GET'])
 def chatbot_training():
-    return render_template('train.html')
+    return render_template('train.html') # Render file html
 
+# https://domain.com/chat
 @app.route('/chat', methods=['POST'])
 def chatbot_chat():
     user_input = request.json
@@ -28,7 +31,7 @@ def chatbot_chat():
     else:
         return jsonify(error='Invalid request data'), 400
 
-
+# https://domain.com/train
 @app.route('/train', methods=['POST'])
 def chatbot_train():
     train_data = request.json.get('train_data')  # Use .get() method to safely get the value
@@ -38,7 +41,6 @@ def chatbot_train():
         return jsonify(success=True)
     else:
         return jsonify(error='Invalid training data'), 400
-
 
 if __name__ == '__main__':
     app.run(debug=True)

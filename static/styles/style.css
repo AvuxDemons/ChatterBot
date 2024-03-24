@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins" ;
+}
+
+body {
+    background-color: #1d1d1d;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.navbar .logo {
+    width: 50px;
+    scale: 1.4;
+}
+
+.navbar p {
+    font-size: 15px;
+}
+
+.chat {
+    max-width: 720px;
+    height: 100vh;
+    
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+#messages {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow-y: auto;
+
+    height: 80vh;
+    padding: 20px;
+}
+
+.chat-container{
+    background-image: url("https://e1.pxfuel.com/desktop-wallpaper/826/273/desktop-wallpaper-black-iphone-chat-whatsapp-iphone.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.chat-form {
+    padding: 10px;
+}
+
+.chat-wrapper {
+    display: flex;
+    align-self: flex-end;
+    flex-direction: row;
+    justify-content: center;
+    height: 100%;
+    gap: 5px
+}
+
+.chat-wrapper input {
+    padding: 5px 10px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.chat-wrapper input:focus {
+    outline: none;
+}
+
+.chat-wrapper button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8%;
+    background-color: #0995f3;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.chat-bubble {
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.chat-bubble.user {
+    align-self: flex-end;
+    background-color: #0995f3;
+    color: #ffffff;
+    border-bottom-right-radius: 0px;
+}
+
+.chat-bubble.bot {
+    background-color: #fff;
+    color: #000;
+    border-bottom-left-radius: 0px;
+}

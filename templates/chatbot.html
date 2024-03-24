@@ -6,17 +6,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Chatbot</title>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     </head>
 
     <body>
-        <h1>Chatbot</h1>
-        <div id="chat-container">
-            <div id="messages"></div>
-            <form id="chat-form">
-                <input type="text" id="user-input" placeholder="Type your message...">
-                <button type="submit">Send</button>
-            </form>
-        </div>
+        <main class="chat">
+            <nav class="navbar">
+                <img src="https://img.freepik.com/free-vector/cute-robot-flying-cartoon-illustration-people-technology-icon-concept_138676-1892.jpg" class="logo" alt="Logo">
+                <div>
+                    <h3>CHATBOT</h3>
+                    <p>🟢 Online</p>
+                </div>
+            </nav>
+            <div class="chat-container">
+                <div id="messages"></div>
+                <form class="chat-form" id="chat-form">
+                    <div class="chat-wrapper">
+                        <input type="text" id="user-input" placeholder="Type your message...">
+                        <button type="submit">
+                            <span class="material-symbols-outlined">
+                            send
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+            
         <script>
             const chatForm = document.getElementById('chat-form');
             const messages = document.getElementById('messages');
@@ -33,17 +50,20 @@
                         data: JSON.stringify({ user_input: userMessage }),
                         success: function (response) {
                             const userQuestion = document.createElement('div');
-                            userQuestion.textContent = `User: ${userMessage}`;
-                            document.getElementById('messages').appendChild(userQuestion);
+                            userQuestion.classList.add('chat-bubble', 'user');
+                            userQuestion.textContent = userMessage;
+                            messages.appendChild(userQuestion);
 
                             const chatbotResponse = document.createElement('div');
-                            chatbotResponse.textContent = `Chatbot: ${response.response.text}`;
-                            document.getElementById('messages').appendChild(chatbotResponse);
+                            chatbotResponse.classList.add('chat-bubble', 'bot');
+                            chatbotResponse.textContent = response.response.text;
+                            messages.appendChild(chatbotResponse);
                         },
                         error: function (error) {
                             console.error('Error:', error);
                         }
                     });
+                    userInput.value = '';
                 }
             });
         </script>
