@@ -6,38 +6,66 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Train Chatbot</title>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     </head>
 
     <body>
-        <h1>Train Chatbot</h1>
-        <form id="train-form">
-            <label for="train-input">User Input:</label>
-            <textarea id="train-input" rows="5" cols="50"></textarea>
-            <br>
-            <button type="submit">Train</button>
-        </form>
-        <script>
-            const trainForm = document.getElementById('train-form');
-            const trainInput = document.getElementById('train-input');
+        <main class="chat">
+            <nav class="navbar">
+                <img src="https://img.freepik.com/free-vector/cute-robot-flying-cartoon-illustration-people-technology-icon-concept_138676-1892.jpg"
+                    class="logo" alt="Logo">
+                <div>
+                    <h4>CHATBOT</h4>
+                    <p>Training Page</p>
+                </div>
+            </nav>
+            <div class="chat-container">
+                <form id="train-form" class="train-form">
+                    <textarea id="train-input"></textarea>
+                    <button type="submit" id="submit">Train</button>
+                </form>
 
-            trainForm.addEventListener('submit', (event) => {
-                event.preventDefault();
-                const trainUserInput = trainInput.value.trim();
-                if (trainUserInput) {
-                    const userInputs = trainUserInput.split('\n');
-                    $.ajax({
-                        url: '/train',
-                        method: 'POST',
-                        contentType: 'application/json',
-                        data: JSON.stringify({ train_data: userInputs }),
-                        success: function (response) {
-                            console.log('Training successful');
-                        },
-                        error: function (error) {
-                            console.log('Training failed');
-                        }
-                    });
-                }
+            </div>
+        </main>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const trainForm = document.getElementById('train-form');
+                const trainInput = document.getElementById('train-input');
+                const Submit = document.getElementById('submit'); // Define Submit here
+
+                trainForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const trainUserInput = trainInput.value.trim();
+                    if (trainUserInput) {
+                        const userInputs = trainUserInput.split('\n');
+                        $.ajax({
+                            url: '/train',
+                            method: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify({ train_data: userInputs }),
+                            success: function (response) {
+                                console.log('Training successful');
+                                const oldColor = Submit.style.backgroundColor; // Change style() to style
+                                Submit.textContent = "Berhasil...";
+                                Submit.style.backgroundColor = '#00ff00'; // Change style() to style
+                                setTimeout(() => {
+                                    Submit.textContent = "Train";
+                                    Submit.style.backgroundColor = oldColor; // Change style() to style
+                                }, 3000);
+                            },
+                            error: function (error) {
+                                console.log('Training failed');
+                            }
+                        });
+
+                        trainInput.value = '';
+                    } else {
+                        alert('Silahkan masukkan percakapan');
+                    }
+                });
             });
         </script>
 

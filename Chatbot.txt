@@ -1,0 +1,6 @@
+Link Repo : https://github.com/AvuxDemons/ChatterBot
+Demo : http://chatbot.avux.cc/
+
+Kelompok : 
+- Agustyn Nanda Aulya Pratama ( 06.2022.1.07573 )
+- Davin Tistama Brilliant Samudra ( 06.2022.1.07536 )

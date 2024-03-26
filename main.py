@@ -4,7 +4,7 @@ from lib.bot import CustomChatBot
 app = Flask(__name__) # Bikin Web Server
 
 chatbot = CustomChatBot() # Bikin Object BOT
-chatbot.train_default() # Training basic
+# chatbot.train_default() # Training basic
 
 # https://domain.com
 @app.route('/', methods=['GET'])
